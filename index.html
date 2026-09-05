@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08111f">
+  <title>O Fenômeno? | Carreira de Futebol</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark"><span class="brand-kicker">Edição especial</span><span class="brand-name">O FENÔMENO?</span></div>
+      <div class="topbar-actions">
+        <button class="icon-button" id="saveButton" title="Salvar agora" aria-label="Salvar agora">SALVAR</button>
+        <button class="icon-button" id="hallButton" title="Abrir ranking local" aria-label="Abrir ranking local">HALL</button>
+        <button class="icon-button" id="manualButton" title="Como jogar" aria-label="Como jogar">MANUAL</button>
+        <button class="icon-button" id="settingsButton" title="Configurações" aria-label="Configurações">CONFIG</button>
+        <button class="icon-button" id="fullscreenButton" title="Tela cheia" aria-label="Tela cheia">TELA CHEIA</button>
+      </div>
+    </header>
+    <div class="ticker" aria-live="polite"><span class="ticker-label">ÚLTIMA HORA</span><div class="ticker-window"><div id="tickerTrack">Crie seu atleta e escreva uma história que ninguém esquecerá.</div></div></div>
+
+    <main id="app" class="main-content">
+      <section id="screen-home" class="screen active">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Simulador de carreira • edição local</p>
+            <h1>Você é<br><em>o fenômeno?</em></h1>
+            <p class="hero-lede">Uma carreira inteira. Decisões que pesam. Um lugar entre os maiores.</p>
+            <div class="hero-actions">
+              <button class="primary-button" id="startButton">COMEÇAR CARREIRA <span>→</span></button>
+              <button class="secondary-button" id="continueButton">CONTINUAR</button>
+              <button class="text-button" id="databaseButton">BANCO DE LENDAS</button>
+              <button class="text-button" id="statsButton">ESTATÍSTICAS GERAIS</button>
+            </div>
+            <div class="hero-note"><span class="live-dot"></span> Jogo 100% local • seu progresso fica neste navegador</div>
+          </div>
+          <div class="hero-scoreboard">
+            <div class="scoreboard-label">PAINEL DA LENDA</div>
+            <div class="scoreboard-number">99</div>
+            <div class="scoreboard-caption">OVR MÁXIMO</div>
+            <div class="score-lines"><span><b>60+</b> manchetes</span><span><b>6</b> posições</span><span><b>∞</b> histórias</span></div>
+          </div>
+        </div>
+        <div class="home-bottom">
+          <div><span class="section-kicker">COMO JOGAR</span><p>Escolha seu caminho, aguente a pressão e leve seu nome ao placar da eternidade.</p></div>
+          <div class="mode-preview"><span class="mode-chip">SIMULAÇÃO COMPLETA</span><span class="mode-chip muted">MODO RÁPIDO</span></div>
+        </div>
+      </section>
+
+      <section id="screen-create" class="screen">
+        <div class="section-heading"><span class="eyebrow">Capítulo 01 • O começo</span><h2>Apresente-se ao mundo.</h2><p>Todo grande nome começa com uma ficha em branco.</p></div>
+        <form id="createForm" class="create-layout">
+          <div class="form-panel">
+            <label for="playerName">Nome do atleta</label>
+            <input id="playerName" name="playerName" maxlength="24" placeholder="Ex.: Caio Ventura" required>
+            <label for="position">Posição</label>
+            <select id="position" name="position" required><option value="centroavante">Centroavante</option><option value="segundo-atacante">Segundo Atacante</option><option value="ponta">Ponta</option><option value="meia-atacante">Meia-atacante</option><option value="meia">Meio-campo</option><option value="volante">Volante</option><option value="lateral">Lateral</option><option value="zagueiro">Zagueiro</option></select>
+            <label for="country">Seleção fictícia</label>
+            <select id="country" name="country" required></select>
+            <label for="shirtNumber">Número da camisa</label>
+            <input id="shirtNumber" name="shirtNumber" type="number" min="1" max="99" value="9" required>
+            <label for="origin">Clube formador</label>
+            <select id="origin" name="origin" required><option>Atlético Aurora</option><option>União do Vale</option><option>Estrela do Norte</option><option>Porto Dourado</option><option>Real Serrano</option><option>Ferroviária Azul</option></select>
+            <label class="mode-toggle"><input type="checkbox" id="fastMode"> <span><strong>Modo rápido</strong><small>2 decisões por temporada, para atravessar a carreira em poucos minutos.</small></span></label>
+          </div>
+          <div class="trait-panel"><label>Modo do draft</label><div class="draft-mode-grid"><label><input type="radio" name="draftMode" value="analyst" checked> Analista<small>Valores visíveis + 1 troca às cegas.</small></label><label><input type="radio" name="draftMode" value="classic"> Clássico<small>Valores visíveis, sem troca.</small></label><label><input type="radio" name="draftMode" value="instinct"> Instinto<small>Números ocultos, sem troca.</small></label></div><label>Traço de personalidade</label><div id="traitOptions" class="trait-grid"></div><button class="primary-button full" type="submit">IR PARA O DRAFT <span>→</span></button></div>
+        </form>
+        <button class="text-button back-home" data-go="screen-home">← Voltar</button>
+      </section>
+
+      <section id="screen-draft" class="screen"><div class="draft-header"><div><span class="eyebrow" id="draftModeLabel">DRAFT • MODO ANALISTA</span><h2>Roube uma peça da lenda.</h2><p>Uma vaga por carta. O que você escolher agora não poderá ser escolhido depois.</p><div id="draftPreview" class="draft-preview"></div><button class="text-button" id="previewButton">VER PREVIEW DO PAINEL</button></div><div class="draft-count"><strong id="draftCount">01</strong><span>/ 08 cartas</span></div></div><div class="draft-layout"><article class="legend-card"><div class="legend-card-top"><span id="draftEra">ANOS 90</span><span id="draftStyle">ESTILO</span></div><div class="legend-seal">L</div><h3 id="draftLegendName">Nome da Lenda</h3><p id="draftLegendDescription">A carta revelada traz um legado inteiro para você estudar.</p><div id="legendAttributes" class="legend-attributes"></div><div class="draft-actions"><button class="secondary-button" id="blindSwapButton">TROCA ÀS CEGAS</button><button class="text-button" id="databaseFromDraft">VER BANCO DE LENDAS</button></div></article><aside class="player-card-panel"><div class="player-card small-card" id="draftPlayerCard"></div><div class="open-slots" id="openSlots"></div></aside></div></section>
+
+      <section id="screen-database" class="screen"><div class="section-heading compact"><span class="eyebrow">Arquivo de lendas</span><h2>Banco de Lendas</h2><p>Estude o pool fictício antes de arriscar seu próximo draft.</p></div><div class="database-toolbar"><input id="legendSearch" placeholder="Buscar por nome, era ou estilo"><select id="legendEraFilter"><option value="all">Todas as épocas</option><option>Anos 60</option><option>Anos 70</option><option>Anos 80</option><option>Anos 90</option><option>Anos 2000</option><option>Atual</option><option>Curinga</option><option>Especialista</option><option>Azarão</option></select><select id="legendStyleFilter"><option value="all">Todos os estilos</option></select></div><div id="legendDatabase" class="legend-database"></div><button class="text-button back-home" id="databaseBack">← Voltar</button></section>
+
+      <section id="screen-career" class="screen">
+        <div class="career-header"><div><span class="eyebrow" id="careerChapter">TEMPORADA 01</span><h2 id="careerTitle">A hora chegou.</h2></div><div class="career-meta"><span id="careerClub">Atlético Aurora</span><strong id="careerAge">17 anos</strong></div></div>
+        <div class="player-strip"><div class="player-identity"><div class="avatar" id="playerAvatar">CV</div><div><strong id="playerNameDisplay">Caio Ventura</strong><span id="playerPositionDisplay">Atacante • Atlético Aurora</span></div></div><div class="ovr-box"><span>OVR</span><strong id="ovrValue">62</strong></div><div class="morale-box"><span>MORAL</span><div class="meter small"><i id="moraleMeter"></i></div><b id="moraleValue">70</b></div></div>
+        <div class="career-grid"><article class="news-card"><div class="news-card-top"><span class="news-tag" id="eventTag">BASTIDORES</span><span id="eventNumber">01 / 04</span></div><h3 id="eventTitle">Manchete</h3><p id="eventText"></p><div id="choiceList" class="choice-list"></div></article><aside class="stats-panel"><div class="panel-heading"><span>FICHA DO ATLETA</span><button class="text-button" id="quickStatsButton">DETALHES</button></div><div id="attributesList" class="attributes-list"></div><div class="season-mini"><span>CAIXA</span><strong id="moneyValue">$ 18 mil</strong></div><div class="season-mini"><span>POPULARIDADE</span><div class="meter"><i id="popularityMeter"></i></div></div></aside></div>
+      </section>
+
+      <section id="screen-hub" class="screen"><div class="hub-heading"><div><span class="eyebrow">CENTRAL DE DECISÕES</span><h2>Entre uma partida e outra.</h2><p id="hubNarrative">O clube espera sua próxima decisão.</p></div><div class="hub-match-count"><strong id="hubMatchNumber">01</strong><span id="hubMatchTotal">/ 34 jogos</span></div></div><div class="decision-tabs" role="tablist"><button class="decision-tab active" data-tab="contract">CONTRATO</button><button class="decision-tab" data-tab="agent">EMPRESÁRIO</button><button class="decision-tab" data-tab="coach">TÉCNICO</button><button class="decision-tab" data-tab="body">CORPO</button><button class="decision-tab" data-tab="club">CLUBE</button></div><div id="decisionPanel" class="decision-panel"></div><div class="hub-actions"><button class="secondary-button" id="hubSkipFive">SIMULAR PRÓXIMOS 5</button><button class="secondary-button" id="hubSkipSeason">SIMULAR RESTO DA TEMPORADA</button><button class="primary-button" id="hubPlayButton">JOGAR PRÓXIMA PARTIDA <span>→</span></button></div></section>
+      <section id="screen-match" class="screen"><div class="match-header"><span class="eyebrow" id="matchCompetition">CAMPEONATO FICTÍCIO</span><h2 id="matchOpponent">Rival Metropolitano</h2><p id="matchVenue">CASA • PARTIDA COMUM</p></div><div class="match-scoreboard"><div><span id="matchHomeTeam">Aurora do Interior</span><strong id="matchHomeScore">0</strong></div><b>×</b><div><span id="matchAwayTeam">Rival Metropolitano</span><strong id="matchAwayScore">0</strong></div></div><div class="match-actions"><button class="secondary-button" id="matchSimFive">SIMULAR PRÓXIMOS 5</button><button class="secondary-button" id="matchSimSeason">SIMULAR RESTO</button><button class="primary-button" id="matchFinishButton">VER FICHA DA PARTIDA <span>→</span></button></div></section>
+
+      <section id="screen-season" class="screen"><div class="section-heading"><span class="eyebrow">Fim da temporada</span><h2 id="seasonHeadline">Um ano para lembrar.</h2><p id="seasonNarrative"></p></div><div class="season-result-grid"><div class="result-score"><span>NOTA DA TEMPORADA</span><strong id="seasonRating">7.8</strong><small>/ 10</small></div><div class="season-facts" id="seasonFacts"></div></div><div class="match-report" id="matchReport"></div><div class="evolution-panel"><h3>Evolução do atleta</h3><div id="evolutionList" class="evolution-list"></div></div><div class="season-actions"><button class="secondary-button" id="retireButton">ENCERRAR CARREIRA</button><button class="primary-button" id="nextSeasonButton">SEGUIR PARA A PRÓXIMA <span>→</span></button></div></section>
+
+      <section id="screen-final" class="screen"><div class="final-banner"><span class="eyebrow">Arquivo histórico • carreira encerrada</span><h2 id="finalTitle">Uma história para o futebol.</h2><p id="finalVerdict"></p><strong class="verdict-stamp" id="verdictStamp">O FENÔMENO</strong></div><div class="final-layout"><div id="finalPlayerCard" class="player-card final-card"></div><div class="final-ovr"><span>OVR FINAL</span><strong id="finalOvr">82</strong><div class="ovr-scale"><i id="finalOvrBar"></i></div><div class="scale-labels"><span>Promessa</span><span>Ícone</span><span>Fenômeno</span></div></div><div class="final-stats" id="finalStats"></div></div><div class="final-actions"><button class="primary-button" id="hallSaveButton">GUARDAR NO HALL DA FAMA <span>★</span></button><button class="secondary-button" id="newCareerButton">NOVA CARREIRA</button></div><p id="hallStatus" class="status-message"></p></section>
+
+      <section id="screen-hall" class="screen"><div class="section-heading compact"><span class="eyebrow">Arquivo local</span><h2>Hall da Fama</h2><p>As carreiras que fizeram história neste navegador.</p></div><div class="hall-toolbar"><select id="hallSort"><option value="ovr">Ordenar: Overall</option><option value="goals">Ordenar: Gols</option><option value="titles">Ordenar: Títulos</option><option value="age">Ordenar: Mais recentes</option></select><select id="hallFilter"><option value="all">Todas as posições</option><option value="atacante">Atacantes</option><option value="meia">Meias</option><option value="volante">Volantes</option><option value="lateral">Laterais</option><option value="zagueiro">Zagueiros</option><option value="goleiro">Goleiros</option></select><button class="secondary-button" id="exportButton">EXPORTAR JSON</button><button class="secondary-button" id="importButton">IMPORTAR JSON</button><input type="file" id="importFile" accept="application/json" hidden></div><div id="hallList" class="hall-list"></div><button class="text-button back-home" data-go="screen-home">← Voltar ao início</button></section>
+      <section id="screen-manual" class="screen"><div class="section-heading compact"><span class="eyebrow">Manual tático</span><h2>Como jogar</h2><p>As regras do arquivo esportivo, em linguagem direta.</p></div><div class="manual-grid"><article><span>01</span><h3>Draft</h3><p>Você revela oito lendas e rouba exatamente um atributo de cada carta. Depois que uma vaga é preenchida, ela fica travada para o resto do draft.</p></article><article><span>02</span><h3>Modos</h3><p>Analista mostra números e permite uma troca às cegas. Clássico mostra números sem troca. Instinto esconde tudo e não oferece troca.</p></article><article><span>03</span><h3>Overall</h3><p>O OVR é uma soma ponderada pelos pesos da posição. Defesa importa mais para zagueiros; finalização e drible pesam mais para centroavantes e pontas.</p></article><article><span>04</span><h3>As cinco abas</h3><p>Contrato cuida de salário e multa; Empresário busca mercado; Técnico altera confiança e função; Corpo controla físico; Clube mostra elenco, tabela e próximos jogos.</p></article><article><span>05</span><h3>Jogo a Jogo</h3><p>Escolha esse ritmo em Configurações para disputar uma temporada partida por partida. A tabela atualiza V-E-D, saldo e pontos, com atalhos para simular cinco ou o resto.</p></article><article><span>06</span><h3>Ligas e copas</h3><p>Distância entre seu OVR e a força da liga altera números, títulos e reconhecimento. Ligas fortes valorizam mais o legado; copas e competições continentais valem mais.</p></article><article><span>07</span><h3>Carreira</h3><p>Idade, moral, fase, físico, lesões e decisões de mercado alteram sua curva. Aos 35 anos o jogo começa a perguntar sobre aposentadoria.</p></article><article><span>08</span><h3>Veredito</h3><p>Promessa, Homem de Elenco, Ídolo da Torcida, Elite, Ícone e O FENÔMENO. O último degrau exige números, força média de liga e longevidade.</p></article></div><button class="text-button back-home" data-go="screen-home">← Voltar</button></section>
+      <section id="screen-stats" class="screen"><div class="section-heading compact"><span class="eyebrow">Arquivo cruzado</span><h2>Estatísticas Gerais</h2><p>O que suas carreiras dizem quando colocadas lado a lado.</p></div><div id="careerStatsOverview" class="career-stats-overview"></div><div id="verdictBars" class="verdict-bars"></div><button class="text-button back-home" data-go="screen-home">← Voltar</button></section>
+      <section id="screen-settings" class="screen"><div class="section-heading compact"><span class="eyebrow">Preferências locais</span><h2>Configurações</h2><p>Controles salvos apenas neste navegador.</p></div><div class="settings-panel"><label class="setting-row"><span><strong>Animações</strong><small>Desative transições e movimento do ticker.</small></span><input type="checkbox" id="animationsToggle" checked></label><label class="setting-row"><span><strong>Modo rápido</strong><small>Novas carreiras começam com menos eventos manuais.</small></span><input type="checkbox" id="settingsFastMode"></label><label class="setting-row extra-setting"><span><strong>MODO EXTRA — NÃO OFICIAL</strong><small>Eventos opcionais de minigame, fora do formato narrativo/estatístico.</small></span><input type="checkbox" id="minigameToggle"></label><div class="setting-row"><span><strong>Ritmo da carreira</strong><small>Eventos, resumo rápido ou partida por partida.</small></span><select id="careerPace"><option value="events">Simulação Completa</option><option value="fast">Fast Mode</option><option value="match">Jogo a Jogo</option></select></div><button class="secondary-button" id="resetButton">APAGAR TODO O PROGRESSO</button></div><button class="text-button back-home" data-go="screen-home">← Voltar</button></section>
+      <section id="screen-minigame" class="screen"><div class="section-heading compact"><span class="eyebrow">MODO EXTRA — NÃO OFICIAL</span><h2>Pênalti decisivo.</h2><p>Escolha uma zona ou deixe o arquivo simular automaticamente.</p></div><div class="penalty-game"><div class="goal-grid" id="goalGrid"><button data-zone="0">ESQ. ALTA</button><button data-zone="1">CENTRO ALTA</button><button data-zone="2">DIR. ALTA</button><button data-zone="3">ESQ. BAIXA</button><button data-zone="4">CENTRO BAIXA</button><button data-zone="5">DIR. BAIXA</button></div><button class="secondary-button" id="autoPenaltyButton">SIMULAR AUTOMATICAMENTE</button><p id="minigameResult"></p></div></section>
+      <section id="screen-cover" class="screen cover-screen"><div class="cover-kicker">EDIÇÃO EXTRAORDINÁRIA</div><h2 id="coverTitle">OFICIAL: uma nova estrela nasce.</h2><p id="coverText"></p><button class="primary-button" id="coverContinueButton">ABRIR ARQUIVO</button></section>
+    </main>
+    <footer class="footer"><span>O FENÔMENO? / ARQUIVO LOCAL</span><span>Sem marcas. Só histórias.</span></footer>
+  </div>
+  <script src="data.js"></script><script src="game.js"></script>
+</body>
+</html>
